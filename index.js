@@ -13,9 +13,27 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(`a user connected`);
-  socket.on("disconnect", () => {
-    console.log(`user disconnected`);
-  });
+  //data transfer after 10 second
+  /**
+   setTimeout(() => {
+    socket.send("Learn with Rabbil Hasan (Server-->Client)");
+  }, 10000);
+  */
+
+  //data transfer continuously
+  /**
+   setInterval(() => {
+    const d = new Date();
+    const t = d.getTime();
+    socket.send(t);
+  }, 100);
+  */
+
+  setInterval(() => {
+    const d = new Date();
+    const t = d.getTime();
+    socket.emit("myEvent", t);
+  }, 100);
 });
 
 expressServer.listen(3000, () => {

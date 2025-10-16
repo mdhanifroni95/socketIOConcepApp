@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Socket io App</title>
-</head>
-<body>
-  <h1>Hello</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket io App</title>
+  </head>
+  <body>
+    <h1 id="myTime"></h1>
 
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket=io();
-  </script>
-</body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket = io();
+      socket.on("myEvent", (msg) => {
+        document.getElementById("myTime").innerHTML = "";
+        document.getElementById("myTime").innerHTML = msg;
+      });
+    </script>
+  </body>
 </html>
