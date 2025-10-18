@@ -29,11 +29,17 @@ io.on("connection", (socket) => {
   }, 100);
   */
 
-  setInterval(() => {
+  /**
+ *  setInterval(() => {
     const d = new Date();
     const t = d.getTime();
     socket.emit("myEvent", t);
   }, 100);
+*/
+  //client to server data receive
+  socket.on("myEventClientToServer", (msg) => {
+    console.log(msg);
+  });
 });
 
 expressServer.listen(3000, () => {
