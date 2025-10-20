@@ -7,26 +7,44 @@
   </head>
   <body>
     <!-- <h1 id="myTime"></h1> -->
-    <input type="text" id="name" />
-    <button onclick="send()" id="send">Send</button>
+    <h1 id="message"></h1>
+    <!-- <input type="text" id="name" />
+    <button onclick="send()" id="send">Send</button> -->
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      let socket = io();
+      // let socket = io();
       // socket.on("myEvent", (msg) => {
       //   document.getElementById("myTime").innerHTML = "";
       //   document.getElementById("myTime").innerHTML = msg;
       // });
 
       //client to server data send
-      function send() {
-        let name = document.getElementById("name").value;
+      // function send() {
+      //   let name = document.getElementById("name").value;
 
-        //default send function
-        /**socket.send(name);*/
-        //Custom event
-        socket.emit("myEventClientToServer", name);
-      }
+      //default send function
+      /**socket.send(name);*/
+      //Custom event
+      //   socket.emit("myEventClientToServer", name);
+      // }
+
+      //broadcast all client
+      /**
+       *  const socket = io();
+      const message = document.getElementById("message");
+      socket.on("myBroadcast", (data) => {
+        message.innerHTML = data;
+      });
+      */
+
+      //broadcast namespace wise client
+      // const socket = io("/buy");
+      const socket = io("/sell");
+      const message = document.getElementById("message");
+      socket.on("myEvent", (data) => {
+        message.innerHTML = data;
+      });
     </script>
   </body>
 </html>
